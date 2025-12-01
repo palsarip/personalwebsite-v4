@@ -1,0 +1,13 @@
+$ eslint
+
+F:\PROJECTS\Web App\personalwebsite\personalwebsite-v4\apps\client\app\layout.tsx
+  6:10  warning  'Footer' is defined but never used  @typescript-eslint/no-unused-vars
+
+F:\PROJECTS\Web App\personalwebsite\personalwebsite-v4\apps\client\components\layout\header.tsx
+  4:39  warning  'Twitter' is defined but never used  @typescript-eslint/no-unused-vars
+
+F:\PROJECTS\Web App\personalwebsite\personalwebsite-v4\apps\client\components\layout\profile-header.tsx
+  9:45  warning  'avatar' is defined but never used  @typescript-eslint/no-unused-vars
+
+Γ£û 3 problems (0 errors, 3 warnings)
+

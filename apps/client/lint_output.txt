@@ -1,0 +1,28 @@
+$ eslint
+
+F:\PROJECTS\Web App\personalwebsite\personalwebsite-v4\apps\client\app\layout.tsx
+  6:10  warning  'Footer' is defined but never used  @typescript-eslint/no-unused-vars
+
+F:\PROJECTS\Web App\personalwebsite\personalwebsite-v4\apps\client\app\page.tsx
+  88:38  error  React Hook "useState" is called in function "renderCardContent" that is neither a React function component nor a custom React Hook function. React component names must start with an uppercase letter. React Hook names must start with the word "use"   react-hooks/rules-of-hooks
+  90:14  error  React Hook "useEffect" is called in function "renderCardContent" that is neither a React function component nor a custom React Hook function. React component names must start with an uppercase letter. React Hook names must start with the word "use"  react-hooks/rules-of-hooks
+
+F:\PROJECTS\Web App\personalwebsite\personalwebsite-v4\apps\client\components\features\ascii-garden.tsx
+  10:7   warning  'CHARS' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  18:26  error    Unexpected any. Specify a different type    @typescript-eslint/no-explicit-any
+
+F:\PROJECTS\Web App\personalwebsite\personalwebsite-v4\apps\client\components\features\faulty-terminal.tsx
+  63:6  warning  React Hook useEffect has a missing dependency: 'logs'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+F:\PROJECTS\Web App\personalwebsite\personalwebsite-v4\apps\client\components\layout\header.tsx
+  4:39  warning  'Twitter' is defined but never used  @typescript-eslint/no-unused-vars
+
+F:\PROJECTS\Web App\personalwebsite\personalwebsite-v4\apps\client\components\layout\profile-header.tsx
+  9:45  warning  'avatar' is defined but never used  @typescript-eslint/no-unused-vars
+
+F:\PROJECTS\Web App\personalwebsite\personalwebsite-v4\apps\client\components\ui\input.tsx
+  4:18  error  An interface declaring no members is equivalent to its supertype  @typescript-eslint/no-empty-object-type
+
+Γ£û 9 problems (4 errors, 5 warnings)
+
+error: script "lint" exited with code 1
