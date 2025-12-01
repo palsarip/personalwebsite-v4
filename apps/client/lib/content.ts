@@ -88,6 +88,7 @@ export type SpotifyWidgetData = {
 
 export type TechStackWidgetData = {
   type: "tech-stack";
+  variant?: "default" | "terminal" | "icons" | "bubble"; // New field
   stack: string[];
 };
 
@@ -215,16 +216,19 @@ export const bentoGridItems: BentoItem[] = [
       `,
     },
   },
-    {
+
+  {
     id: 6,
     slug: "tech-stack",
     type: "widget",
     layout: { colSpan: 1, rowSpan: 1 },
     style: {
-      contentAlignment: "center",
+      background: "bg-white",
+      textColor: "text-zinc-900",
     },
     data: {
       type: "tech-stack",
+      variant: "bubble",
       stack: ["React", "Next.js", "TypeScript", "Tailwind", "Node.js", "Figma", "Git"],
     },
   },

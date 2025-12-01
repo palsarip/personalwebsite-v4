@@ -131,6 +131,101 @@ function CycleClock({ time, timeZone, locationName }: { time: Date, timeZone: st
   )
 }
 
+// --- Terminal Stack Component ---
+function TerminalStack({ stack }: { stack: string[] }) {
+  const [currentText, setCurrentText] = useState("")
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [isDeleting, setIsDeleting] = useState(false)
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      const currentWord = stack[currentIndex]
+      
+      if (isDeleting) {
+        setCurrentText(currentWord.substring(0, currentText.length - 1))
+      } else {
+        setCurrentText(currentWord.substring(0, currentText.length + 1))
+      }
+
+      if (!isDeleting && currentText === currentWord) {
+        setTimeout(() => setIsDeleting(true), 1000) // Wait before deleting
+      } else if (isDeleting && currentText === "") {
+        setIsDeleting(false)
+        setCurrentIndex((prev) => (prev + 1) % stack.length)
+      }
+    }, isDeleting ? 50 : 100)
+
+    return () => clearTimeout(timeout)
+  }, [currentText, isDeleting, currentIndex, stack])
+
+  return (
+    <div className="flex flex-col items-start justify-center h-full w-full p-6 bg-zinc-950 font-mono text-green-400 text-sm overflow-hidden">
+      <div className="flex items-center gap-2 mb-4 opacity-50">
+        <div className="w-3 h-3 rounded-full bg-red-500" />
+        <div className="w-3 h-3 rounded-full bg-yellow-500" />
+        <div className="w-3 h-3 rounded-full bg-green-500" />
+      </div>
+      <div className="space-y-1">
+        <p className="opacity-50">$ install dependencies</p>
+        <p>
+          <span className="text-blue-400">❯</span> installing{" "}
+          <span className="text-white font-bold">{currentText}</span>
+          <span className="animate-pulse">_</span>
+        </p>
+      </div>
+    </div>
+  )
+}
+
+// --- Icon Stack Component ---
+function IconStack({ stack }: { stack: string[] }) {
+  // Helper to get icon URL (using simpleicons.org)
+  const getIconUrl = (tech: string) => {
+    const slug = tech.toLowerCase().replace(/\./g, 'dot').replace(/\s+/g, '')
+    return `https://cdn.simpleicons.org/${slug}/000000/ffffff` // Default black, dark mode white handled by filter or separate logic
+  }
+
+  return (
+    <div className="flex flex-col items-center justify-center h-full w-full overflow-hidden relative">
+      <div className="absolute inset-y-0 left-0 w-12 bg-gradient-to-r from-zinc-300 to-transparent dark:from-zinc-900 z-10" />
+      <div className="absolute inset-y-0 right-0 w-12 bg-gradient-to-l from-zinc-300 to-transparent dark:from-zinc-900 z-10" />
+      
+      <div className="flex gap-8 animate-infinite-scroll whitespace-nowrap items-center">
+          {[...stack, ...stack].map((tech, i) => (
+            <div key={i} className="flex flex-col items-center gap-2 group cursor-default">
+              <img 
+                src={getIconUrl(tech)} 
+                alt={tech}
+                className="w-8 h-8 opacity-50 group-hover:opacity-100 transition-opacity dark:invert"
+                onError={(e) => {
+                  // Fallback if icon not found: hide image, show text? 
+                  // For now just hide the broken image
+                  (e.target as HTMLImageElement).style.display = 'none'
+                }}
+              />
+            </div>
+          ))}
+      </div>
+    </div>
+  )
+}
+
+// --- Bubble Stack Component ---
+function BubbleStack({ stack }: { stack: string[] }) {
+  return (
+    <div className="flex flex-wrap items-center justify-center content-center gap-2 h-full w-full p-4">
+      {stack.map((tech, i) => (
+        <span 
+          key={i} 
+          className="px-3 py-1 rounded-full text-xs font-medium bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700"
+        >
+          {tech}
+        </span>
+      ))}
+    </div>
+  )
+}
+
 export function WidgetRenderer({ item }: WidgetRendererProps) {
   const [time, setTime] = useState<Date | null>(null)
 
@@ -143,8 +238,18 @@ export function WidgetRenderer({ item }: WidgetRendererProps) {
   }, [item.data.type])
 
   switch (item.data.type) {
-    // ... tech-stack ...
     case "tech-stack":
+      if (item.data.variant === "terminal") {
+        return <TerminalStack stack={item.data.stack} />
+      }
+      if (item.data.variant === "icons") {
+        return <IconStack stack={item.data.stack} />
+      }
+      if (item.data.variant === "bubble") {
+        return <BubbleStack stack={item.data.stack} />
+      }
+      
+      // Default Marquee
       return (
         <div className="flex flex-col items-center justify-center h-full w-full overflow-hidden relative">
           <div className="absolute inset-y-0 left-0 w-12 bg-gradient-to-r from-zinc-300 to-transparent z-10" />
@@ -205,5 +310,5 @@ export function WidgetRenderer({ item }: WidgetRendererProps) {
           </div>
        )
   }
-  return null
+  return null 
 }

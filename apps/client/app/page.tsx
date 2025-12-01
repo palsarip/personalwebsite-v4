@@ -95,7 +95,11 @@ export default function Home() {
 
                 // 8. Sheet Card Cover Override
                 // If a sheet card has a cover, we remove padding so the image/video is full bleed
-                item.type === "sheet" && item.data.cover && "p-0"
+                item.type === "sheet" && item.data.cover && "p-0",
+
+                // 9. Tech Stack Widget Override
+                // Tech stack needs full width for the infinite scroll
+                item.type === "widget" && item.data.type === "tech-stack" && "p-0"
               )}
               onClick={item.type === "sheet" && item.data.sheetContent ? () => setActiveSheetId(item.id) : undefined}
             >
