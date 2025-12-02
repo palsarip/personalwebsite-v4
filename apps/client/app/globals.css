@@ -1,7 +1,9 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: var(--font-figtree), ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-sans:
+    var(--font-figtree), ui-sans-serif, system-ui, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 
@@ -56,10 +58,13 @@
   }
 
   @keyframes infinite-scroll {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
   }
-  
 }
 
 .animate-infinite-scroll {
@@ -139,4 +144,39 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-foreground);
+}
+
+@utility shadow-surround-sm {
+  box-shadow:
+    0px 1px 2px -1px rgba(0, 0, 0, 0.08),
+    0px 1px 0px 0px rgba(25, 28, 33, 0.02),
+    0px 0px 0px 1px rgba(25, 28, 33, 0.05);
+}
+
+@utility shadow-surround-md {
+  box-shadow:
+    0px 2px 3px -1px rgba(0, 0, 0, 0.1),
+    0px 1px 0px 0px rgba(25, 28, 33, 0.02),
+    0px 0px 0px 1px rgba(25, 28, 33, 0.08);
+}
+
+@utility shadow-surround-lg {
+  box-shadow:
+    0px 4px 6px -2px rgba(0, 0, 0, 0.1),
+    0px 2px 4px -1px rgba(0, 0, 0, 0.06),
+    0px 0px 0px 1px rgba(25, 28, 33, 0.08);
+}
+
+@utility shadow-surround-xl {
+  box-shadow:
+    0px 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0px 4px 6px -2px rgba(0, 0, 0, 0.05),
+    0px 0px 0px 1px rgba(25, 28, 33, 0.08);
+}
+
+@utility shadow-surround-2xl {
+  box-shadow:
+    0px 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0px 10px 10px -5px rgba(0, 0, 0, 0.04),
+    0px 0px 0px 1px rgba(25, 28, 33, 0.08);
 }

@@ -1,7 +1,7 @@
 export const profileData = {
   name: "Naufal Syarif",
   role: "Software Engineer",
-}
+};
 
 // --- Types ---
 
@@ -14,11 +14,11 @@ export type LayoutConfig = {
 
 export type StyleConfig = {
   background?: string; // e.g., "bg-zinc-300"
-  textColor?: string;  // e.g., "text-white"
+  textColor?: string; // e.g., "text-white"
   borderRadius?: string; // e.g., "rounded-3xl"
   overflow?: "hidden" | "visible"; // Replaces className="overflow-hidden"
   contentAlignment?: "center" | "start"; // Replaces className="flex items-center justify-center"
-  shadow?: "none" | "sm" | "md" | "lg" | "xl" | "2xl" | "input"; // New variable for drop shadow
+  shadow?: "none" | "sm" | "md" | "lg" | "xl" | "2xl"; // New variable for drop shadow
 };
 
 // Discriminated Union Types
@@ -72,9 +72,6 @@ export type SheetCard = {
   };
 };
 
-
-
-
 // Widget Data Types
 export type SpotifyWidgetData = {
   type: "spotify";
@@ -88,7 +85,7 @@ export type SpotifyWidgetData = {
 
 export type TechStackWidgetData = {
   type: "tech-stack";
-  variant?: "default" | "terminal" | "icons" | "bubble"; // New field
+  variant?: "default" | "terminal" | "icons" | "bubble" | "bubble-grid"; // New field
   stack: string[];
 };
 
@@ -137,6 +134,7 @@ export const bentoGridItems: BentoItem[] = [
     layout: { colSpan: 1, rowSpan: 1 },
     style: {
       contentAlignment: "center",
+      shadow: "lg",
     },
     data: {
       title: "I'm a Software Engineer",
@@ -160,7 +158,7 @@ export const bentoGridItems: BentoItem[] = [
       `,
     },
   },
- {
+  {
     id: 3,
     slug: "local-time",
     type: "widget",
@@ -182,7 +180,9 @@ export const bentoGridItems: BentoItem[] = [
     slug: "building-a-design-system",
     type: "sheet",
     layout: { colSpan: 2, rowSpan: 1 },
-    style: {},
+    style: {
+      shadow: "lg",
+    },
     data: {
       title: "Building a Design System",
       description: "Lessons learned from scaling UI components.",
@@ -195,16 +195,18 @@ export const bentoGridItems: BentoItem[] = [
       `,
     },
   },
- {
+  {
     id: 5,
     slug: "personal-space",
     type: "sheet",
     layout: { colSpan: 1, rowSpan: 2 },
     style: {
       contentAlignment: "center",
+      textColor: "text-white",
+      shadow: "lg",
     },
     data: {
-      title: "Personal Space",
+      title: "",
       description: "",
       sheetTitle: "Personal Space",
       sheetContent: `
@@ -214,6 +216,10 @@ export const bentoGridItems: BentoItem[] = [
           </p>
         </div>
       `,
+      cover: {
+        url: "/assets/content/photos/jakarta.jpg",
+        type: "image",
+      },
     },
   },
 
@@ -223,13 +229,28 @@ export const bentoGridItems: BentoItem[] = [
     type: "widget",
     layout: { colSpan: 1, rowSpan: 1 },
     style: {
-      background: "bg-white",
+      background: "bg-transparent",
       textColor: "text-zinc-900",
+      shadow: "none",
     },
     data: {
       type: "tech-stack",
-      variant: "bubble",
-      stack: ["React", "Next.js", "TypeScript", "Tailwind", "Node.js", "Figma", "Git"],
+      variant: "bubble-grid",
+      stack: [
+        "React",
+        "Next.js",
+        "TypeScript",
+        "Tailwind",
+        "Node.js",
+        "Express.js",
+        "Nest.js",
+        "MySQL",
+        "PostgreSQL",
+        "Python",
+        "Splunk",
+        "Figma",
+        "Git",
+      ],
     },
   },
   {
@@ -266,4 +287,4 @@ export const bentoGridItems: BentoItem[] = [
       },
     },
   },
-]
+];

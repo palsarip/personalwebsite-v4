@@ -1,26 +1,42 @@
-import Link from "next/link"
-import { Container } from "@/components/layout/container"
-import { Button } from "@/components/ui/button"
-import { Github, Instagram, Linkedin, Twitter } from "lucide-react" // Using Twitter as placeholder for Threads if needed or just generic
+import Link from "next/link";
+import { Container } from "@/components/layout/container";
+import { Button } from "@/components/ui/button";
+import { Github, Instagram, Linkedin, Twitter } from "lucide-react"; // Using Twitter as placeholder for Threads if needed or just generic
 
 export function Header() {
   return (
-    <header className="fixed top-0 z-50 w-full border-b border-white/10 bg-white/5 backdrop-blur-md supports-[backdrop-filter]:bg-white/5">
+    <header className="fixed top-0 z-50 w-full border-b border-white/10 bg-white/5 backdrop-blur-md">
       <Container>
         <div className="flex h-14 items-center justify-between">
           <div className="flex items-center">
             <Link href="/" className="flex items-center space-x-2">
-              <span className="font-bold text-lg tracking-tight">Personal.</span>
+              <span className="font-bold text-lg tracking-tight">
+                Naufal Syarif
+              </span>
             </Link>
           </div>
           <div className="flex items-center space-x-2">
-            <Button variant="ghost" size="icon" asChild className="h-8 w-8 text-muted-foreground hover:text-foreground">
-              <Link href="https://instagram.com" target="_blank" rel="noreferrer">
+            <Button
+              variant="ghost"
+              size="icon"
+              asChild
+              className="h-8 w-8 text-muted-foreground hover:text-foreground"
+            >
+              <Link
+                href="https://instagram.com"
+                target="_blank"
+                rel="noreferrer"
+              >
                 <Instagram className="h-4 w-4" />
                 <span className="sr-only">Instagram</span>
               </Link>
             </Button>
-            <Button variant="ghost" size="icon" asChild className="h-8 w-8 text-muted-foreground hover:text-foreground">
+            <Button
+              variant="ghost"
+              size="icon"
+              asChild
+              className="h-8 w-8 text-muted-foreground hover:text-foreground"
+            >
               <Link href="https://threads.net" target="_blank" rel="noreferrer">
                 {/* Threads Icon SVG since Lucide might not have it yet */}
                 <svg
@@ -41,13 +57,27 @@ export function Header() {
                 <span className="sr-only">Threads</span>
               </Link>
             </Button>
-            <Button variant="ghost" size="icon" asChild className="h-8 w-8 text-muted-foreground hover:text-foreground">
-              <Link href="https://linkedin.com" target="_blank" rel="noreferrer">
+            <Button
+              variant="ghost"
+              size="icon"
+              asChild
+              className="h-8 w-8 text-muted-foreground hover:text-foreground"
+            >
+              <Link
+                href="https://linkedin.com"
+                target="_blank"
+                rel="noreferrer"
+              >
                 <Linkedin className="h-4 w-4" />
                 <span className="sr-only">LinkedIn</span>
               </Link>
             </Button>
-            <Button variant="ghost" size="icon" asChild className="h-8 w-8 text-muted-foreground hover:text-foreground">
+            <Button
+              variant="ghost"
+              size="icon"
+              asChild
+              className="h-8 w-8 text-muted-foreground hover:text-foreground"
+            >
               <Link href="https://github.com" target="_blank" rel="noreferrer">
                 <Github className="h-4 w-4" />
                 <span className="sr-only">GitHub</span>
@@ -57,5 +87,5 @@ export function Header() {
         </div>
       </Container>
     </header>
-  )
+  );
 }
