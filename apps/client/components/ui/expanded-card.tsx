@@ -126,17 +126,17 @@ export function ExpandedCard({ item, onClose, layoutId }: ExpandedCardProps) {
                     !item.data.cover.expandedPosition)
                 ) &&
                   !("heroImageUrl" in item.data && item.data.heroImageUrl) && (
-                    <div className="p-6 sm:p-8 pb-0">
+                    <div className="px-6 sm:px-8 pt-12 pb-6 max-w-2xl mx-auto w-full text-left">
                       <motion.h2
                         layoutId={`title-${item.id}`}
-                        className="text-3xl sm:text-4xl font-bold font-sans"
+                        className="text-3xl sm:text-4xl font-bold font-sans tracking-tight text-foreground"
                       >
                         {item.data.sheetTitle}
                       </motion.h2>
                       {item.data.description && (
                         <motion.p
                           layoutId={`description-${item.id}`}
-                          className="text-lg opacity-80 mt-2 font-medium"
+                          className="text-lg text-zinc-800 mt-2 font-medium leading-relaxed"
                         >
                           {item.data.description}
                         </motion.p>
@@ -150,12 +150,16 @@ export function ExpandedCard({ item, onClose, layoutId }: ExpandedCardProps) {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.4 }}
-                  className="prose dark:prose-invert p-6 sm:p-8 max-w-none"
+                  className="prose prose-lg dark:prose-invert px-6 sm:px-8 pb-12 max-w-2xl mx-auto w-full 
+                             prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-foreground
+                             prose-p:text-zinc-800 prose-p:leading-relaxed
+                             prose-blockquote:border-l-4 prose-blockquote:border-zinc-200 prose-blockquote:pl-4 prose-blockquote:italic
+                             prose-img:rounded-2xl prose-img:shadow-sm"
                 >
                   {/* Cover Image/Video in Content Mode */}
                   {item.data.cover &&
                     item.data.cover.expandedPosition === "content" && (
-                      <div className="mb-6 rounded-xl overflow-hidden w-full h-64 sm:h-80 relative">
+                      <div className="mb-10 rounded-2xl overflow-hidden w-full h-64 sm:h-80 relative shadow-sm">
                         {item.data.cover.type === "video" ? (
                           <video
                             src={item.data.cover.url}

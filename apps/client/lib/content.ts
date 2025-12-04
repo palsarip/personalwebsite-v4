@@ -41,6 +41,7 @@ export type SocialCard = {
   layout: LayoutConfig;
   style?: StyleConfig;
   data: {
+    variant?: "default" | "glass" | "outline";
     links: { platform: SocialPlatform; url: string }[];
   };
 };
@@ -172,6 +173,7 @@ export const bentoGridItems: BentoItem[] = [
       variant: "analog",
       withFace: false,
       timeZone: "Asia/Jakarta",
+      // locationName: "Jakarta, ID",
       latLng: [-6.2088, 106.8456],
     },
   },
@@ -184,107 +186,65 @@ export const bentoGridItems: BentoItem[] = [
       shadow: "lg",
     },
     data: {
-      title: "Building a Design System",
-      description: "Lessons learned from scaling UI components.",
-      sheetTitle: "Building a Design System",
+      title: "Manual Code vs Vibe Coding",
+      description: "Is AI replacing the joy of crafting code?",
+      sheetTitle: "Manual Code vs Vibe Coding",
       sheetContent: `
-        <div class="prose dark:prose-invert">
-          <p>Full article about design systems...</p>
-          <p>Key takeaways include...</p>
+        <div class="prose dark:prose-invert max-w-none">
+          <p class="lead text-xl text-zinc-800 font-medium">
+            There's a shift happening in how we build software. The debate isn't just about efficiency anymore—it's about the soul of programming.
+          </p>
+          
+          <h2>The Craft of Manual Coding</h2>
+          <p>
+            For years, writing code was like carpentry. You picked your tools, you measured twice, and you cut once. Every function was a deliberate choice, every variable name a small act of design. There's a deep satisfaction in understanding every layer of your stack, from the database query to the CSS transition.
+          </p>
+          <p>
+            Manual coding forces you to think deeply about structure. It's slow, yes. But it builds muscle memory and intuition. When things break, you know exactly where to look because you placed every brick yourself.
+          </p>
+
+          <div class="my-8 rounded-2xl overflow-hidden shadow-sm">
+             <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop" alt="Coding Setup" class="w-full h-auto object-cover" />
+             <p class="text-sm text-center text-zinc-500 mt-2 italic">The classic manual setup: terminal, code editor, and focus.</p>
+          </div>
+
+          <h2>Enter "Vibe Coding"</h2>
+          <p>
+            Then comes the AI era. "Vibe coding" is less about syntax and more about intent. You describe the outcome, the <em>vibe</em>, and the machine handles the implementation. It's like being a director rather than a cinematographer.
+          </p>
+          <p>
+            It's exhilarating. You can prototype an entire app in an afternoon. But does it feel the same? Is the connection to the craft lost when you're just prompting instead of typing?
+          </p>
+
+          <blockquote>
+            "The best code is the code you don't write. But the best understanding comes from the code you do."
+          </blockquote>
+
+          <h2>Finding the Balance</h2>
+          <p>
+            Maybe it's not binary. I use AI to scaffold, to debug, to explore. But when it comes to the core logic, the critical path, I still want my hands on the wheel. Vibe coding for the mundane, manual coding for the meaningful.
+          </p>
         </div>
       `,
     },
   },
   {
     id: 5,
-    slug: "personal-space",
-    type: "sheet",
-    layout: { colSpan: 1, rowSpan: 2 },
-    style: {
-      contentAlignment: "center",
-      textColor: "text-white",
-      shadow: "lg",
-    },
-    data: {
-      title: "",
-      description: "",
-      sheetTitle: "Personal Space",
-      sheetContent: `
-        <div class="prose dark:prose-invert">
-          <p>
-              This is my personal space where I share my thoughts, experiences, and insights. 
-          </p>
-        </div>
-      `,
-      cover: {
-        url: "/assets/content/photos/jakarta.jpg",
-        type: "image",
-      },
-    },
-  },
-
-  {
-    id: 6,
-    slug: "tech-stack",
-    type: "widget",
-    layout: { colSpan: 1, rowSpan: 1 },
-    style: {
-      background: "bg-transparent",
-      textColor: "text-zinc-900",
-      shadow: "none",
-    },
-    data: {
-      type: "tech-stack",
-      variant: "bubble-grid",
-      stack: [
-        "React",
-        "Next.js",
-        "TypeScript",
-        "Tailwind",
-        "Node.js",
-        "Express.js",
-        "Nest.js",
-        "MySQL",
-        "PostgreSQL",
-        "Python",
-        "Splunk",
-        "Figma",
-        "Git",
-      ],
-    },
-  },
-  {
-    id: 7,
     slug: "socials",
     type: "social",
     layout: { colSpan: 1, rowSpan: 1 },
     style: {
       background: "bg-transparent",
-      textColor: "text-white",
+      shadow: "none",
     },
     data: {
+      variant: "default",
       links: [
         { platform: "github", url: "https://github.com/naufalsyarif" },
         { platform: "linkedin", url: "https://linkedin.com/in/naufalsyarif" },
         { platform: "twitter", url: "https://twitter.com/naufalsyarif" },
         { platform: "instagram", url: "https://instagram.com/naufalsyarif" },
       ],
-    },
-  },
-  {
-    id: 8,
-    slug: "video-demo",
-    type: "sheet",
-    layout: { colSpan: 2, rowSpan: 1 },
-    style: {
-      contentAlignment: "center",
-    },
-    data: {
-      cover: {
-        url: "/assets/content/videos/rdr2.mp4",
-        type: "video",
-        expandedPosition: "header",
-      },
     },
   },
 ];
