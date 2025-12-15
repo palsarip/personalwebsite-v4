@@ -57,8 +57,12 @@ export type SheetCard = {
     description?: string;
     content?: string; // Short text displayed on the card
     sheetTitle?: string;
+
     sheetContent?: string; // HTML content for the sheet
     heroImageUrl?: string; // Optional image URL for the header
+    gallery?: string[]; // Array of image URLs for the gallery
+    tags?: string[]; // Array of tags/tech stack
+    date?: string; // e.g., "Oct 2023 - Present"
     cta?: {
       label: string;
       url: string;
@@ -70,6 +74,8 @@ export type SheetCard = {
       type?: "image" | "video"; // Default to 'image'
       expandedPosition?: "header" | "content"; // Default to 'header'
     };
+    label?: string; // New: Badge Label
+    labelPosition?: "top-left" | "top-center"; // New: Label Position
   };
 };
 
@@ -138,22 +144,24 @@ export const bentoGridItems: BentoItem[] = [
       shadow: "lg",
     },
     data: {
+      label: "About Me",
+      labelPosition: "top-center",
       title: "I'm a Software Engineer",
-      description: "who likes to build things",
-      sheetTitle: "I'm a Software Engineer",
+      description: "crafting digital experiences that matter.",
+      sheetTitle: "Hello, I'm Naufal.",
       sheetContent: `
         <div class="prose dark:prose-invert">
           <p>
-              Hello! I'm Naufal Syarif, a Software Engineer based in Jakarta, ID. 
-              I specialize in building high-quality web applications using modern technologies like Next.js, React, and TypeScript.
+              I'm a Software Engineer based in Jakarta, ID. I don't just write code; I build digital products that people love to use.
           </p>
           <p>
-              With a passion for design and user experience, I strive to create interfaces that are not only functional but also beautiful and intuitive.
+              My journey started with a curiosity about how things work on the web. That curiosity turned into a passion for building high-quality applications using <strong>Next.js</strong>, <strong>React</strong>, and <strong>TypeScript</strong>. I obsess over small details—the micro-interactions, the performance optimizations, and the clean architecture that no one sees but everyone feels.
           </p>
-          <h3>Experience</h3>
+          <h3>What I Do</h3>
           <ul>
-              <li>Software Engineer at [Company] (2023 - Present)</li>
-              <li>Frontend Developer at [Company] (2021 - 2023)</li>
+              <li><strong>Frontend Engineering:</strong> Building responsive, accessible, and performant user interfaces.</li>
+              <li><strong>System Design:</strong> Architecting scalable frontend solutions that can grow with the product.</li>
+              <li><strong>UI/UX Collaboration:</strong> Bridging the gap between design and engineering to ensure pixel-perfect implementation.</li>
           </ul>
         </div>
       `,
@@ -186,46 +194,54 @@ export const bentoGridItems: BentoItem[] = [
       shadow: "lg",
     },
     data: {
+      label: "Blog",
+      labelPosition: "top-left",
       title: "Manual Code vs Vibe Coding",
       description: "Is AI replacing the joy of crafting code?",
       sheetTitle: "Manual Code vs Vibe Coding",
+
       sheetContent: `
-        <div class="prose dark:prose-invert max-w-none">
-          <p class="lead text-xl text-zinc-800 font-medium">
-            There's a shift happening in how we build software. The debate isn't just about efficiency anymore—it's about the soul of programming.
-          </p>
-          
+        <div>
           <h2>The Craft of Manual Coding</h2>
           <p>
-            For years, writing code was like carpentry. You picked your tools, you measured twice, and you cut once. Every function was a deliberate choice, every variable name a small act of design. There's a deep satisfaction in understanding every layer of your stack, from the database query to the CSS transition.
+             There is an undeniable intimacy in writing code line by line. It’s a craft, much like woodworking. You choose your tools, you understand the grain of the material, and you build with intention. Every function is a decision; every component structure is a deliberate act of design.
           </p>
           <p>
-            Manual coding forces you to think deeply about structure. It's slow, yes. But it builds muscle memory and intuition. When things break, you know exactly where to look because you placed every brick yourself.
+             When you code manually, you aren't just telling the computer <em>what</em> to do—you are defining <em>how</em> it exists. You build muscle memory for syntax and a deep intuition for logic. When a bug appears, you know where to look because you laid the bricks yourself.
           </p>
 
-          <div class="my-8 rounded-2xl overflow-hidden shadow-sm">
-             <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop" alt="Coding Setup" class="w-full h-auto object-cover" />
-             <p class="text-sm text-center text-zinc-500 mt-2 italic">The classic manual setup: terminal, code editor, and focus.</p>
-          </div>
-
-          <h2>Enter "Vibe Coding"</h2>
+          <h2>The Rise of "Vibe Coding"</h2>
           <p>
-            Then comes the AI era. "Vibe coding" is less about syntax and more about intent. You describe the outcome, the <em>vibe</em>, and the machine handles the implementation. It's like being a director rather than a cinematographer.
+             But then comes AI, and with it, "Vibe Coding." It shifts the paradigm from <strong>implementation</strong> to <strong>intent</strong>. You describe the outcome—the <em>vibe</em>—and the machine handles the plumbing. It’s like being a film director instead of the camera operator.
           </p>
-          <p>
-            It's exhilarating. You can prototype an entire app in an afternoon. But does it feel the same? Is the connection to the craft lost when you're just prompting instead of typing?
-          </p>
-
+          <ul>
+            <li><strong>Velocity:</strong> Prototyping happens at the speed of thought.</li>
+            <li><strong>Creativity:</strong> You can explore five different architectural approaches in the time it used to take to write one boilerplate file.</li>
+            <li><strong>Democratization:</strong> The barrier to entry drops; ideas matter more than syntax memorization.</li>
+          </ul>
+          
           <blockquote>
-            "The best code is the code you don't write. But the best understanding comes from the code you do."
+            "The best code is the code you don't write. But the deepest understanding comes from the code you do."
           </blockquote>
 
-          <h2>Finding the Balance</h2>
+          <h2>Finding Harmony</h2>
           <p>
-            Maybe it's not binary. I use AI to scaffold, to debug, to explore. But when it comes to the core logic, the critical path, I still want my hands on the wheel. Vibe coding for the mundane, manual coding for the meaningful.
+             I don't see it as a binary choice. I use AI to scaffold, to debug, to handle the mundane. But when it comes to the core business logic, the complex state management, or that one specific animation that needs to feel <em>just right</em>—I take the wheel.
+          </p>
+          <p>
+             <strong>Vibe coding for the velocity, manual coding for the veracity.</strong>
           </p>
         </div>
       `,
+      date: "December 12, 2024",
+      gallery: [
+        "https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=2070&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1605379399642-870262d3d051?q=80&w=2106&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?q=80&w=2070&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1555099962-4199c345e5dd?q=80&w=2070&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1534972195531-d756b9bfa9f2?q=80&w=2070&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=2070&auto=format&fit=crop",
+      ],
     },
   },
   {

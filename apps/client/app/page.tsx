@@ -64,6 +64,8 @@ export default function Home() {
                   !!item.data.sheetTitle &&
                   !!item.data.sheetContent)
               }
+              label={(item.data as any).label}
+              labelPosition={(item.data as any).labelPosition}
               className={cn(
                 // 1. Layout Config - Responsive Spans
                 "col-span-1", // Mobile: Always 1 column

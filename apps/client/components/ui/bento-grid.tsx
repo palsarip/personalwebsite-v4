@@ -29,6 +29,8 @@ export const BentoCard = ({
   layoutId,
   enableHover = false,
   enableTap = true,
+  label,
+  labelPosition = "top-left",
 }: {
   className?: string;
   children?: React.ReactNode;
@@ -36,6 +38,8 @@ export const BentoCard = ({
   layoutId?: string;
   enableHover?: boolean;
   enableTap?: boolean;
+  label?: string;
+  labelPosition?: "top-left" | "top-center";
 }) => {
   return (
     <motion.div
@@ -46,11 +50,24 @@ export const BentoCard = ({
       transition={{ type: "spring", duration: 0.6, bounce: 0.3 }}
       onClick={onClick}
       className={cn(
-        "row-span-1 relative rounded-2xl group/bento p-12 border border-transparent justify-between flex flex-col space-y-4 overflow-hidden",
+        "row-span-1 relative rounded-2xl group/bento p-12 py-20 border border-transparent justify-between flex flex-col space-y-4 overflow-hidden",
         onClick && "cursor-pointer",
         className
       )}
     >
+      {label && (
+        <div
+          className={cn(
+            "absolute top-6 z-20 px-3 py-1 bg-black rounded-full shadow-[inset_0_1px_0_0_rgba(255,255,255,0.2)]",
+            "text-[10px] font-bold text-white uppercase tracking-widest",
+            labelPosition === "top-center"
+              ? "left-1/2 -translate-x-1/2"
+              : "left-12"
+          )}
+        >
+          {label}
+        </div>
+      )}
       {children}
     </motion.div>
   );
