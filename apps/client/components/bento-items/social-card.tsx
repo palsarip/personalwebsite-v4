@@ -44,7 +44,7 @@ export function SocialCard({ item }: SocialCardProps) {
         return cn(
           baseStyles,
           "bg-white",
-          "rounded-full",
+          "rounded-3xl md:rounded-full", // Squircle on mobile/tablet, Circle on desktop
           "text-zinc-900",
           "shadow-surround-lg", // Updated to match sheet card shadow exactly
           "hover:bg-zinc-50 hover:scale-105"
@@ -53,13 +53,16 @@ export function SocialCard({ item }: SocialCardProps) {
   };
 
   return (
-    <div className="grid grid-cols-2 grid-rows-2 gap-4 w-full h-full p-4">
+    <div className="grid grid-cols-2 grid-rows-2 gap-4 w-full h-full p-0 md:p-4 md:auto-rows-fr">
       {item.data.links.map((social) => (
         <Link
           key={social.platform}
           href={social.url}
           target="_blank"
-          className={getButtonStyles(social.platform)}
+          className={cn(
+            getButtonStyles(social.platform),
+            "aspect-square h-full w-full" // Ensure square aspect ratio
+          )}
         >
           {social.platform === "github" && <Github className="w-6 h-6" />}
           {social.platform === "linkedin" && <Linkedin className="w-6 h-6" />}

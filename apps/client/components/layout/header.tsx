@@ -41,7 +41,12 @@ export function Header() {
   return (
     <header className="fixed top-0 z-50 w-full pointer-events-none">
       <Container className="h-20 flex items-center">
-        <div className="relative flex w-full items-center">
+        <div
+          className={cn(
+            "relative flex w-full items-center",
+            isHome && "hidden md:flex" // Hide on mobile home, show on desktop home. Always show on other pages.
+          )}
+        >
           {/* Name Pill Container - Controls Position */}
           <div
             className={cn(
