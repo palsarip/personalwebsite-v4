@@ -14,7 +14,6 @@ import { SheetCard } from "@/components/bento-items/sheet-card";
 import { WidgetRenderer } from "@/components/bento-items/widget-renderer";
 import { SpotifyCard } from "@/components/bento-items/spotify-card";
 import { ExpandedCard } from "@/components/ui/expanded-card";
-import { MobileDock } from "@/components/layout/mobile-dock";
 
 export default function Home() {
   console.log("Rendering Home with items:", bentoGridItems);
@@ -48,7 +47,6 @@ export default function Home() {
 
   return (
     <div className="font-sans">
-      <MobileDock />
       <Container className="space-y-8 py-8">
         {/* ProfileHeader removed as requested */}
 

@@ -51,7 +51,7 @@ export function Header() {
           <div
             className={cn(
               "flex w-full items-center transition-all duration-500 ease-in-out",
-              isHome ? "justify-center" : "justify-start"
+              isHome ? "justify-center" : "justify-center md:justify-start"
             )}
           >
             <motion.div
@@ -81,7 +81,7 @@ export function Header() {
                 initial="hidden"
                 animate="visible"
                 exit="exit"
-                className="absolute right-0 flex items-center space-x-2"
+                className="absolute right-0 hidden md:flex items-center space-x-2"
               >
                 {[
                   {

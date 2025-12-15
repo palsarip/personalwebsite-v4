@@ -21,9 +21,6 @@ export function MobileDock() {
   const isHome = pathname === "/";
   const [isOpen, setIsOpen] = useState(false);
 
-  // Only show on non-home pages on mobile/tablet
-  if (isHome) return null;
-
   const socials = [
     {
       icon: Instagram,
@@ -81,12 +78,12 @@ export function MobileDock() {
               className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 pointer-events-auto"
             />
 
-            {/* Glassmorphism Sheet */}
+            {/* Glassmorphism Sheet - Dark Theme to match Gallery */}
             <motion.div
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              className="absolute bottom-20 mx-4 p-4 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl border border-white/20 shadow-2xl rounded-3xl z-50 pointer-events-auto min-w-[300px]"
+              className="absolute bottom-24 mx-auto p-6 bg-black/60 backdrop-blur-md border border-white/10 shadow-2xl rounded-3xl z-50 pointer-events-auto min-w-[320px]"
             >
               <div className="grid grid-cols-4 gap-4">
                 {socials.map((social, index) => (
@@ -94,12 +91,12 @@ export function MobileDock() {
                     key={index}
                     href={social.href}
                     target="_blank"
-                    className="flex flex-col items-center gap-2 group"
+                    className="flex flex-col items-center gap-3 group"
                   >
-                    <div className="h-14 w-14 rounded-2xl bg-white/50 dark:bg-white/10 flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform duration-200">
-                      <social.icon className={cn("h-7 w-7", social.color)} />
+                    <div className="h-14 w-14 rounded-2xl bg-white/10 flex items-center justify-center shadow-lg border border-white/10 group-hover:scale-105 transition-transform duration-200">
+                      <social.icon className={cn("h-6 w-6 text-white")} />
                     </div>
-                    <span className="text-xs font-medium text-zinc-600 dark:text-zinc-300">
+                    <span className="text-[10px] uppercase tracking-wider font-bold text-white/70">
                       {social.label}
                     </span>
                   </Link>
@@ -114,14 +111,9 @@ export function MobileDock() {
       <motion.button
         whileTap={{ scale: 0.95 }}
         onClick={() => setIsOpen(!isOpen)}
-        className="h-14 px-6 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-md shadow-surround-lg rounded-full flex items-center gap-3 border border-white/20 pointer-events-auto"
+        className="h-14 w-14 bg-black/60 backdrop-blur-md shadow-2xl rounded-full flex items-center justify-center border border-white/10 pointer-events-auto"
       >
-        <span className="text-sm font-medium text-zinc-800 dark:text-zinc-200">
-          Socials
-        </span>
-        <div className="h-8 w-8 rounded-full bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center">
-          <Share2 className="h-4 w-4 text-zinc-600 dark:text-zinc-400" />
-        </div>
+        <Share2 className="h-6 w-6 text-white" />
       </motion.button>
     </div>
   );
