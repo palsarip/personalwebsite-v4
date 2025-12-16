@@ -80,9 +80,14 @@ export type SheetCard = {
 };
 
 // Widget Data Types
-export type SpotifyWidgetData = {
+export type BaseWidgetData = {
+  label?: string;
+  labelPosition?: "top-left" | "top-center";
+};
+
+export type SpotifyWidgetData = BaseWidgetData & {
   type: "spotify";
-  variant?: "default" | "large"; // "default" = standard padding, "large" = full bleed/prominent
+  variant?: "default" | "large";
   isPlaying: boolean;
   songTitle: string;
   artist: string;
@@ -90,19 +95,23 @@ export type SpotifyWidgetData = {
   spotifyUrl: string;
 };
 
-export type TechStackWidgetData = {
+export type TechStackWidgetData = BaseWidgetData & {
   type: "tech-stack";
-  variant?: "default" | "terminal" | "icons" | "bubble" | "bubble-grid"; // New field
+  variant?: "default" | "terminal" | "icons" | "bubble" | "bubble-grid";
   stack: string[];
 };
 
-export type TimeLocationWidgetData = {
+export type TimeLocationWidgetData = BaseWidgetData & {
   type: "time-location";
   variant?: "default" | "analog" | "cycle";
-  withFace?: boolean; // Toggle clock face (border/bg)
+  withFace?: boolean;
   timeZone: string;
   locationName?: string;
   latLng: [number, number];
+};
+
+export type ChatWidgetData = BaseWidgetData & {
+  type: "chat";
 };
 
 export type WidgetCard = {
@@ -111,7 +120,11 @@ export type WidgetCard = {
   type: "widget";
   layout: LayoutConfig;
   style?: StyleConfig;
-  data: SpotifyWidgetData | TechStackWidgetData | TimeLocationWidgetData;
+  data:
+    | SpotifyWidgetData
+    | TechStackWidgetData
+    | TimeLocationWidgetData
+    | ChatWidgetData;
 };
 
 export type BentoItem = ProfileCard | SocialCard | SheetCard | WidgetCard;
@@ -262,5 +275,106 @@ export const bentoGridItems: BentoItem[] = [
         { platform: "instagram", url: "https://instagram.com/naufalsyarif" },
       ],
     },
+  },
+];
+
+export const contactBentoItems: BentoItem[] = [
+  {
+    id: 1,
+    slug: "chat",
+    type: "widget",
+    layout: { colSpan: 3, rowSpan: 2 },
+    style: {
+      background: "bg-white",
+      shadow: "xl",
+      overflow: "hidden",
+    },
+    data: {
+      type: "chat",
+      label: "AI Assistant",
+      labelPosition: "top-center",
+    },
+  },
+];
+
+export type Project = {
+  title: string;
+  description: string;
+  tags: string[];
+  link: string;
+  imageUrl: string;
+  videoUrl?: string; // Optional video URL for hover preview
+  gallery?: string[]; // Optional gallery images
+};
+
+export const projectsData: Project[] = [
+  {
+    title: "Project One",
+    description:
+      "A modern web application built with Next.js and Tailwind CSS.",
+    tags: ["Next.js", "React", "Tailwind"],
+    link: "#",
+    imageUrl:
+      "https://images.unsplash.com/photo-1555099962-4199c345e5dd?q=80&w=2070&auto=format&fit=crop",
+    videoUrl:
+      "https://cdn.coverr.co/videos/coverr-typing-on-a-macbook-keyboard-4638/1080p.mp4",
+    gallery: [
+      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=2072&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1504639725590-34d0984388bd?q=80&w=1974&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1583795128727-6ec36d97eb4b?q=80&w=2070&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=2070&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1605379399642-870262d3d051?q=80&w=2066&auto=format&fit=crop",
+    ],
+  },
+  {
+    title: "Project Two",
+    description: "An e-commerce platform with a custom design system.",
+    tags: ["TypeScript", "Node.js", "PostgreSQL"],
+    link: "#",
+    imageUrl:
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop",
+    videoUrl:
+      "https://cdn.coverr.co/videos/coverr-coding-on-laptop-2-4523/1080p.mp4",
+  },
+  {
+    title: "Project Three",
+    description: "A productivity tool for remote teams.",
+    tags: ["Vue.js", "Firebase", "Sass"],
+    link: "#",
+    imageUrl:
+      "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=2070&auto=format&fit=crop",
+    videoUrl:
+      "https://cdn.coverr.co/videos/coverr-working-on-a-monitor-2626/1080p.mp4",
+  },
+  {
+    title: "Project Four",
+    description: "Real-time analytics dashboard with D3.js.",
+    tags: ["D3.js", "WebSocket", "Node.js"],
+    link: "#",
+    imageUrl:
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop",
+    videoUrl:
+      "https://cdn.coverr.co/videos/coverr-analyzing-graphs-on-screens-5353/1080p.mp4",
+  },
+  {
+    title: "Project Five",
+    description: "AI-powered image generator app.",
+    tags: ["OpenAI", "React", "Python"],
+    link: "#",
+    imageUrl:
+      "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=1965&auto=format&fit=crop",
+    videoUrl:
+      "https://cdn.coverr.co/videos/coverr-ai-generated-scifi-landscape-5339/1080p.mp4",
+  },
+  {
+    title: "Project Six",
+    description: "Mobile fitness tracking application.",
+    tags: ["React Native", "Expo", "Supabase"],
+    link: "#",
+    imageUrl:
+      "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=2070&auto=format&fit=crop",
+    videoUrl:
+      "https://cdn.coverr.co/videos/coverr-scrolling-on-mobile-phone-4903/1080p.mp4",
   },
 ];

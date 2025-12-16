@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import { Clock, MapPin } from "lucide-react";
 import { WidgetCard } from "@/lib/content";
+import { ChatInterface } from "@/components/contact/chat-interface";
 import { ContextMenu } from "@/components/ui/context-menu";
 
 import { cn } from "@/lib/utils";
@@ -569,6 +570,13 @@ export function WidgetRenderer({ item }: WidgetRendererProps) {
               />
             )}
           </AnimatePresence>
+        </div>
+      );
+
+    case "chat":
+      return (
+        <div className="h-full w-full overflow-hidden">
+          <ChatInterface />
         </div>
       );
   }
