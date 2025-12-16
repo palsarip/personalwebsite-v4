@@ -12,7 +12,7 @@ import Link from "next/link";
 interface ExpandedProjectCardProps {
   project: Project;
   onClose: () => void;
-  layoutId: string;
+  layoutId?: string;
 }
 
 export function ExpandedProjectCard({
