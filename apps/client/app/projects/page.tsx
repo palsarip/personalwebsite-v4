@@ -7,7 +7,6 @@ import { ProjectScrollItem } from "@/components/projects/project-scroll-item";
 import { ExpandedProjectCard } from "@/components/projects/expanded-project-card";
 import { AllProjectsOverlay } from "@/components/projects/all-projects-overlay";
 import { ChevronUp, ChevronDown, Grid } from "lucide-react";
-import { cn } from "@/lib/utils";
 
 export default function ProjectsPage() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
@@ -47,6 +46,22 @@ export default function ProjectsPage() {
     scrollToProject(index);
   };
 
+  // Handle keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "ArrowDown") {
+        e.preventDefault();
+        scrollToProject(activeProjectIndex + 1);
+      } else if (e.key === "ArrowUp") {
+        e.preventDefault();
+        scrollToProject(activeProjectIndex - 1);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [activeProjectIndex]);
+
   return (
     <div className="relative h-dvh w-full overflow-hidden">
       {/* Scroll Snap Container */}
@@ -70,7 +85,7 @@ export default function ProjectsPage() {
       </div>
 
       {/* --- Left Sidebar Navigation --- */}
-      <div className="absolute left-[calc(50%-30rem)] top-[calc(50%-3rem)] -translate-y-1/2 flex-col gap-3 z-40 hidden md:flex items-end">
+      <div className="absolute left-[calc(50%-30rem)] top-[calc(50%-3.5rem)] -translate-y-1/2 flex-col gap-3 z-40 hidden md:flex items-end">
         {/* Up Button */}
         <button
           onClick={() => scrollToProject(activeProjectIndex - 1)}

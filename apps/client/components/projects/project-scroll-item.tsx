@@ -40,32 +40,32 @@ export function ProjectScrollItem({
   };
 
   return (
-    <div className="h-dvh w-full snap-start flex flex-col justify-center items-center px-4 relative overflow-hidden pb-24 md:pb-32">
+    <div className="h-dvh w-full snap-start flex flex-col justify-center items-center px-4 relative overflow-hidden">
       <div className="w-full max-w-3xl flex flex-col h-full gap-6 justify-center">
         {/* --- Top Section: Header --- */}
         <div className="flex flex-col gap-2 shrink-0">
           <div className="flex items-center gap-3">
-            <h2 className="text-2xl md:text-3xl font-bold text-zinc-900 tracking-tight">
+            <h2 className="text-xl md:text-2xl font-bold text-zinc-900 tracking-tight">
               {project.title}
             </h2>
             {/* Using the first tag as the "Type" */}
             {project.tags.length > 0 && (
               <Badge
                 variant="secondary"
-                className="bg-blue-50 text-blue-600 hover:bg-blue-100 border-blue-100 px-3 py-1 text-sm rounded-full"
+                className="bg-blue-50 text-blue-600 hover:bg-blue-100 border-blue-100 px-2 py-0.5 text-xs rounded-full"
               >
                 {project.tags[0]}
               </Badge>
             )}
           </div>
-          <p className="text-zinc-500 text-lg md:text-xl max-w-2xl leading-relaxed">
+          <p className="text-zinc-500 text-sm md:text-base max-w-2xl leading-relaxed">
             {project.description}
           </p>
         </div>
 
         {/* --- Middle Section: Media --- */}
         <motion.div
-          className="flex-1 w-full bg-zinc-100 rounded-[32px] overflow-hidden relative group shadow-sm border border-zinc-100"
+          className="w-full aspect-video bg-zinc-100 rounded-[24px] overflow-hidden relative group shadow-sm border border-zinc-100"
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
           whileHover={{ scale: 0.995 }}

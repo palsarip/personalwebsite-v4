@@ -181,3 +181,11 @@ body {
     0px 10px 10px -5px rgba(0, 0, 0, 0.04),
     0px 0px 0px 1px rgba(25, 28, 33, 0.08);
 }
+
+@utility no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

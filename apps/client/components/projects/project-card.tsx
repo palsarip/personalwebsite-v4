@@ -58,7 +58,7 @@ export function ProjectCard({
     >
       {/* Media Container - Padded Inside */}
       <div className="p-4 pb-0">
-        <div className="relative aspect-video w-full overflow-hidden rounded-2xl bg-zinc-100">
+        <div className="relative aspect-video w-full overflow-hidden rounded-2xl">
           {/* Static Image */}
           <img
             src={project.imageUrl}

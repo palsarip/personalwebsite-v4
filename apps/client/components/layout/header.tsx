@@ -11,6 +11,10 @@ import { cn } from "@/lib/utils";
 export function Header() {
   const pathname = usePathname();
   const isHome = pathname === "/";
+  // Determine if we need a constrained width for specific pages (Projects, Contact)
+  const isConstrainedPage =
+    pathname.includes("/projects") || pathname.includes("/contact");
+  const contentWidthClass = isConstrainedPage ? "max-w-3xl" : "max-w-7xl";
 
   // Staggered variants for the social container
   const containerVariants = {
@@ -40,7 +44,12 @@ export function Header() {
 
   return (
     <header className="fixed top-0 z-50 w-full pointer-events-none">
-      <Container className="h-20 flex items-center">
+      <Container
+        className={cn(
+          "h-20 flex items-center transition-all duration-300",
+          contentWidthClass
+        )}
+      >
         <div
           className={cn(
             "relative flex w-full items-center",
@@ -56,7 +65,7 @@ export function Header() {
           >
             <motion.div
               layout
-              className="flex items-center bg-white shadow-surround-lg pointer-events-auto backdrop-blur-md rounded-full px-6 py-3 h-14"
+              className="flex items-center bg-white shadow-surround-lg pointer-events-auto rounded-full px-6 py-3 h-14"
               transition={{
                 type: "spring",
                 stiffness: 120,
