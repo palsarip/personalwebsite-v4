@@ -6,6 +6,9 @@ import { projectsData, Project } from "@/lib/content";
 import { ProjectScrollItem } from "@/components/projects/project-scroll-item";
 import { ExpandedProjectCard } from "@/components/projects/expanded-project-card";
 import { AllProjectsOverlay } from "@/components/projects/all-projects-overlay";
+import { AllProjectsAgency } from "@/components/projects/all-projects-agency";
+import { AllProjectsFinder } from "@/components/projects/all-projects-finder";
+import { AllProjectsGallery } from "@/components/projects/all-projects-gallery";
 import { ChevronUp, ChevronDown, Grid, Info, ExternalLink } from "lucide-react";
 
 export default function ProjectsPage() {
@@ -77,6 +80,7 @@ export default function ProjectsPage() {
           >
             <ProjectScrollItem
               project={project}
+              isActive={index === activeProjectIndex}
               onDetailsClick={() => setSelectedProject(project)}
               onAllProjectsClick={() => setShowAllProjects(true)}
             />
@@ -159,10 +163,9 @@ export default function ProjectsPage() {
         )}
       </AnimatePresence>
 
-      {/* All Projects Overlay */}
       <AnimatePresence>
         {showAllProjects && (
-          <AllProjectsOverlay
+          <AllProjectsGallery
             projects={projectsData}
             onClose={() => setShowAllProjects(false)}
             onSelectProject={handleSelectFromOverlay}

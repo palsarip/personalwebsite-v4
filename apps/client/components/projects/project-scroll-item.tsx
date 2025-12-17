@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { Project } from "@/lib/content";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -10,34 +10,38 @@ import { Info, ExternalLink, Grid } from "lucide-react";
 
 interface ProjectScrollItemProps {
   project: Project;
+  isActive: boolean;
   onDetailsClick: () => void;
   onAllProjectsClick: () => void;
 }
 
 export function ProjectScrollItem({
   project,
+  isActive,
   onDetailsClick,
   onAllProjectsClick,
 }: ProjectScrollItemProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
 
-  const handleMouseEnter = () => {
-    if (project.videoUrl && videoRef.current) {
-      videoRef.current.play().catch((e) => {
-        console.warn("Video play failed:", e);
-      });
-      setIsVideoPlaying(true);
-    }
-  };
+  // Handle Autoplay based on active state
+  useEffect(() => {
+    if (!project.videoUrl || !videoRef.current) return;
 
-  const handleMouseLeave = () => {
-    if (project.videoUrl && videoRef.current) {
+    if (isActive) {
+      const playPromise = videoRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise.catch((error) => {
+          // console.warn("Autoplay prevented:", error);
+          setIsVideoPlaying(false);
+        });
+      }
+    } else {
       videoRef.current.pause();
       videoRef.current.currentTime = 0;
       setIsVideoPlaying(false);
     }
-  };
+  }, [isActive, project.videoUrl]);
 
   return (
     <div className="h-full w-full snap-start flex flex-col justify-center items-center px-4 relative overflow-hidden">
@@ -66,8 +70,6 @@ export function ProjectScrollItem({
         {/* --- Middle Section: Media --- */}
         <motion.div
           className="w-full portrait:aspect-[4/5] landscape:aspect-video bg-zinc-100 rounded-[24px] overflow-hidden relative group shadow-sm border border-zinc-100 transition-all duration-500 ease-in-out"
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
           whileHover={{ scale: 0.995 }}
           transition={{ duration: 0.4 }}
         >
@@ -89,6 +91,8 @@ export function ProjectScrollItem({
               muted
               loop
               playsInline
+              onPlaying={() => setIsVideoPlaying(true)}
+              onError={() => setIsVideoPlaying(false)}
               className={cn(
                 "absolute inset-0 h-full w-full object-cover transition-opacity duration-500 pointer-events-none",
                 isVideoPlaying ? "opacity-100" : "opacity-0"

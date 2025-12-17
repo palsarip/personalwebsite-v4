@@ -305,76 +305,137 @@ export type Project = {
   imageUrl: string;
   videoUrl?: string; // Optional video URL for hover preview
   gallery?: string[]; // Optional gallery images
+  category: string; // New: Category for filtering
+  featured?: boolean; // New: Takes up 2x space in grid
 };
 
 export const projectsData: Project[] = [
   {
-    title: "Project One",
+    title: "Lumina Studio",
     description:
-      "A modern web application built with Next.js and Tailwind CSS.",
-    tags: ["Next.js", "React", "Tailwind"],
+      "A high-performance agency website featuring WebGL interactions and smooth scroll animations.",
+    tags: ["Next.js", "WebGL", "GSAP", "Tailwind"],
     link: "#",
     imageUrl:
-      "https://images.unsplash.com/photo-1555099962-4199c345e5dd?q=80&w=2070&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=2000&auto=format&fit=crop",
     videoUrl:
-      "https://cdn.coverr.co/videos/coverr-typing-on-a-macbook-keyboard-4638/1080p.mp4",
+      "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
     gallery: [
+      "https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=2000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1522542550221-31fd19575a2d?q=80&w=2000&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=2072&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1504639725590-34d0984388bd?q=80&w=1974&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1583795128727-6ec36d97eb4b?q=80&w=2070&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=2070&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1605379399642-870262d3d051?q=80&w=2066&auto=format&fit=crop",
     ],
+    category: "Agency",
+    featured: true,
   },
   {
-    title: "Project Two",
-    description: "An e-commerce platform with a custom design system.",
-    tags: ["TypeScript", "Node.js", "PostgreSQL"],
-    link: "#",
-    imageUrl:
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop",
-    videoUrl:
-      "https://cdn.coverr.co/videos/coverr-coding-on-laptop-2-4523/1080p.mp4",
-  },
-  {
-    title: "Project Three",
-    description: "A productivity tool for remote teams.",
-    tags: ["Vue.js", "Firebase", "Sass"],
-    link: "#",
-    imageUrl:
-      "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=2070&auto=format&fit=crop",
-    videoUrl:
-      "https://cdn.coverr.co/videos/coverr-working-on-a-monitor-2626/1080p.mp4",
-  },
-  {
-    title: "Project Four",
-    description: "Real-time analytics dashboard with D3.js.",
-    tags: ["D3.js", "WebSocket", "Node.js"],
+    title: "Apex Finance",
+    description: "A comprehensive fintech dashboard for real-time asset tracking and market analysis.",
+    tags: ["React", "D3.js", "TypeScript", "Node.js"],
     link: "#",
     imageUrl:
       "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop",
     videoUrl:
-      "https://cdn.coverr.co/videos/coverr-analyzing-graphs-on-screens-5353/1080p.mp4",
+      "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
+    category: "Fintech",
   },
   {
-    title: "Project Five",
-    description: "AI-powered image generator app.",
-    tags: ["OpenAI", "React", "Python"],
+    title: "Nova AI",
+    description: "Generative AI platform for creating realistic 3D assets from text prompts.",
+    tags: ["Python", "TensorFlow", "FastAPI", "React"],
     link: "#",
     imageUrl:
       "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=1965&auto=format&fit=crop",
     videoUrl:
-      "https://cdn.coverr.co/videos/coverr-ai-generated-scifi-landscape-5339/1080p.mp4",
+      "https://storage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+    gallery: [
+         "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=1965&auto=format&fit=crop",
+         "https://images.unsplash.com/photo-1535378437323-952a635560a6?q=80&w=2000&auto=format&fit=crop",
+    ],
+    category: "AI",
+    featured: true,
   },
   {
-    title: "Project Six",
-    description: "Mobile fitness tracking application.",
-    tags: ["React Native", "Expo", "Supabase"],
+    title: "Velos Mobile",
+    description: "A cross-platform fitness application connecting runners globally.",
+    tags: ["React Native", "Expo", "Supabase", "GraphQL"],
     link: "#",
     imageUrl:
       "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=2070&auto=format&fit=crop",
     videoUrl:
-      "https://cdn.coverr.co/videos/coverr-scrolling-on-mobile-phone-4903/1080p.mp4",
+      "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
+    category: "Mobile",
+  },
+  {
+    title: "Ethereal Shop",
+    description: "A minimalist headless e-commerce storefront designed for luxury brands.",
+    tags: ["Shopify", "Remix", "Tailwind", "Stripe"],
+    link: "#",
+    imageUrl:
+      "https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=2070&auto=format&fit=crop",
+    videoUrl:
+      "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4",
+    category: "E-commerce",
+  },
+  {
+    title: "Urban Architecture",
+    description: "Portfolio website for an award-winning architectural firm utilizing large-scale imagery.",
+    tags: ["Vue.js", "Nuxt", "Strapi", "Sass"],
+    link: "#",
+    imageUrl:
+      "https://images.unsplash.com/photo-1487958449943-2429e8be8625?q=80&w=2070&auto=format&fit=crop",
+    videoUrl:
+      "https://storage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4",
+    category: "Architecture",
+  },
+  {
+    title: "Cyber Security Ops",
+    description: "Enterprise-grade security monitoring command center interface.",
+    tags: ["Angular", "RxJS", "Java", "Spring Boot"],
+    link: "#",
+    imageUrl:
+      "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop",
+    videoUrl:
+      "https://storage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnStreetAndDirt.mp4",
+    category: "Security",
+    featured: true,
+  },
+  {
+    title: "Eco Tracker",
+    description: "IoT dashboard for monitoring smart city energy consumption patterns.",
+    tags: ["Svelte", "Node.js", "MQTT", "InfluxDB"],
+    link: "#",
+    imageUrl:
+      "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?q=80&w=2070&auto=format&fit=crop",
+    videoUrl:
+      "https://storage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4",
+    category: "IoT",
+  },
+  {
+    title: "Sound Wave",
+    description: "A decentralized music streaming protocol and artist royalty platform.",
+    tags: ["Web3", "Solidity", "Next.js", "IPFS"],
+    link: "#",
+    imageUrl:
+      "https://images.unsplash.com/photo-1511379938547-c1f69419868d?q=80&w=2070&auto=format&fit=crop",
+    videoUrl:
+      "https://storage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4",
+    category: "Web3",
+  },
+  {
+    title: "Travel Diaries",
+    description: "Interactive travelogue featuring map-based storytelling and itinerary planning.",
+    tags: ["React", "Mapbox", "Firebase", "Redux"],
+    link: "#",
+    imageUrl:
+      "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=2021&auto=format&fit=crop",
+    videoUrl:
+      "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+    gallery: [
+         "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=2070&auto=format&fit=crop",
+         "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?q=80&w=2070&auto=format&fit=crop",
+    ],
+    category: "Travel",
   },
 ];
