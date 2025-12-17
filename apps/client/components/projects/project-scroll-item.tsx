@@ -40,32 +40,32 @@ export function ProjectScrollItem({
   };
 
   return (
-    <div className="h-full w-full snap-start flex flex-col justify-center items-center relative overflow-hidden">
-      <div className="w-full max-w-3xl flex flex-col h-full gap-6 justify-center px-4 sm:px-6 lg:px-8">
+    <div className="h-full w-full snap-start flex flex-col justify-center items-center px-4 relative overflow-hidden">
+      <div className="w-full max-w-3xl flex flex-col h-full gap-4 md:gap-6 justify-center">
         {/* --- Top Section: Header --- */}
         <div className="flex flex-col gap-2 shrink-0">
           <div className="flex items-center gap-3">
-            <h2 className="text-2xl md:text-3xl font-bold text-zinc-900 tracking-tight">
+            <h2 className="text-xl md:text-2xl font-bold text-zinc-900 tracking-tight">
               {project.title}
             </h2>
             {/* Using the first tag as the "Type" */}
             {project.tags.length > 0 && (
               <Badge
                 variant="secondary"
-                className="bg-blue-50 text-blue-600 hover:bg-blue-100 border-blue-100 px-2.5 py-0.5 text-xs rounded-full"
+                className="bg-blue-50 text-blue-600 hover:bg-blue-100 border-blue-100 px-2 py-0.5 text-xs rounded-full"
               >
                 {project.tags[0]}
               </Badge>
             )}
           </div>
-          <p className="text-zinc-500 text-sm md:text-base leading-relaxed">
+          <p className="text-zinc-500 text-sm md:text-base max-w-2xl leading-relaxed">
             {project.description}
           </p>
         </div>
 
         {/* --- Middle Section: Media --- */}
         <motion.div
-          className="h-auto w-full aspect-[3/4] bg-zinc-100 rounded-[28px] overflow-hidden relative group shadow-lg border border-zinc-100"
+          className="w-full portrait:aspect-[4/5] landscape:aspect-video bg-zinc-100 rounded-[24px] overflow-hidden relative group shadow-sm border border-zinc-100 transition-all duration-500 ease-in-out"
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
           whileHover={{ scale: 0.995 }}
@@ -117,15 +117,39 @@ export function ProjectScrollItem({
           )}
         </motion.div>
 
-        {/* Mobile All Projects Button (Floating if needed, or keeping it hidden on mobile to save space is better, but user asked for it. I'll put it in the flex flow for mobile as well but maybe smaller) */}
-        <div className="md:hidden w-full flex justify-center -mt-2 pb-4">
+        {/* --- Bottom Section: Actions (Mobile/Tablet Only) --- */}
+        <div className="flex xl:hidden flex-row items-center justify-between gap-3 shrink-0 w-full px-2">
+          {/* Details Button */}
+          <button
+            onClick={onDetailsClick}
+            className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-white border border-zinc-200 text-zinc-700 text-sm font-medium hover:bg-zinc-50 hover:border-zinc-300 transition-all shadow-sm"
+          >
+            <Info size={16} />
+            Details
+          </button>
+
+          {/* All Projects Button (Center) */}
           <button
             onClick={onAllProjectsClick}
-            className="text-xs font-medium text-zinc-400 hover:text-zinc-600 flex items-center gap-1"
+            className="flex items-center justify-center h-10 w-10 shrink-0 rounded-full bg-white border border-zinc-200 text-zinc-700 hover:bg-zinc-50 hover:border-zinc-300 transition-all shadow-sm"
+            title="All Projects"
           >
-            <Grid size={14} />
-            View all projects
+            <Grid size={16} />
           </button>
+
+          {/* Preview Button */}
+          <a
+            href={project.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-zinc-900 text-white text-sm font-medium hover:bg-zinc-800 hover:shadow-lg transition-all shadow-md group"
+          >
+            Preview
+            <ExternalLink
+              size={16}
+              className="group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform"
+            />
+          </a>
         </div>
       </div>
     </div>

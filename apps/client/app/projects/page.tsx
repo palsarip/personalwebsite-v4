@@ -88,7 +88,11 @@ export default function ProjectsPage() {
       <div className="absolute inset-0 pointer-events-none flex items-center justify-center z-40">
         <div className="w-full max-w-3xl relative h-full flex items-center">
           {/* Left: Navigation */}
-          <div className="absolute left-0 -translate-x-full -ml-2 lg:-ml-6 flex flex-col gap-3 pointer-events-auto hidden xl:flex items-end">
+          <div
+            className="absolute flex-col gap-3 pointer-events-auto items-end z-50
+            hidden xl:flex
+            xl:left-0 xl:-translate-x-full xl:-ml-6"
+          >
             <button
               onClick={() => scrollToProject(activeProjectIndex - 1)}
               disabled={activeProjectIndex === 0}
@@ -101,10 +105,7 @@ export default function ProjectsPage() {
               onClick={() => setShowAllProjects(true)}
               className="p-2 rounded-xl text-zinc-600 hover:text-zinc-900 hover:scale-105 transition-all group hover:bg-zinc-100/50"
             >
-              <Grid
-                size={20}
-                className="transition-transform duration-300"
-              />
+              <Grid size={20} className="transition-transform duration-300" />
             </button>
 
             <button
@@ -117,10 +118,16 @@ export default function ProjectsPage() {
           </div>
 
           {/* Right: Actions (Floating) */}
-          <div className="absolute right-4 lg:right-auto lg:left-full lg:ml-6 flex flex-col gap-3 pointer-events-auto items-start">
-             {/* Details Button */}
-             <button
-              onClick={() => setSelectedProject(projectsData[activeProjectIndex])}
+          <div
+            className="absolute flex-col gap-3 pointer-events-auto items-start z-50
+            hidden xl:flex
+            xl:right-auto xl:left-full xl:ml-6"
+          >
+            {/* Details Button */}
+            <button
+              onClick={() =>
+                setSelectedProject(projectsData[activeProjectIndex])
+              }
               className="p-3 rounded-full bg-white shadow-surround-md text-zinc-400 hover:text-zinc-900 transition-all hover:scale-105"
               title="Details"
             >
@@ -140,20 +147,6 @@ export default function ProjectsPage() {
           </div>
         </div>
       </div>
-
-      {/* Mobile Floating Action Button for All Projects (Bottom Right or Left) */}
-      {/* User asked to remove the button "where it was", so moving it to a fixed position is better if we still want it accessible on mobile. 
-           Let's put it bottom-right or top-right. Or maybe top-left to match sidebar.
-           Actually, let's stick to the requested "Arrow Up, All Projects, Down" ON THE LEFT.
-           For mobile, usually scroll is enough, but "All Projects" needs a button.
-           I'll add a floating button for 'All Projects' on mobile since the sidebar is hidden md:flex.
-       */}
-      <button
-        onClick={() => setShowAllProjects(true)}
-        className="md:hidden absolute top-24 left-6 z-40 p-3 rounded-full bg-white/80 backdrop-blur-md border border-zinc-200 text-zinc-900 shadow-sm"
-      >
-        <Grid size={20} />
-      </button>
 
       {/* Details Overlay */}
       <AnimatePresence>
