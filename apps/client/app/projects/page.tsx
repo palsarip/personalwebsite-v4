@@ -6,7 +6,7 @@ import { projectsData, Project } from "@/lib/content";
 import { ProjectScrollItem } from "@/components/projects/project-scroll-item";
 import { ExpandedProjectCard } from "@/components/projects/expanded-project-card";
 import { AllProjectsOverlay } from "@/components/projects/all-projects-overlay";
-import { ChevronUp, ChevronDown, Grid } from "lucide-react";
+import { ChevronUp, ChevronDown, Grid, Info, ExternalLink } from "lucide-react";
 
 export default function ProjectsPage() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
@@ -63,7 +63,7 @@ export default function ProjectsPage() {
   }, [activeProjectIndex]);
 
   return (
-    <div className="relative h-dvh w-full overflow-hidden">
+    <div className="relative h-[calc(100dvh-11rem)] w-full overflow-hidden">
       {/* Scroll Snap Container */}
       <div
         ref={scrollContainerRef}
@@ -84,36 +84,61 @@ export default function ProjectsPage() {
         ))}
       </div>
 
-      {/* --- Left Sidebar Navigation --- */}
-      <div className="absolute left-[calc(50%-30rem)] top-[calc(50%-3.5rem)] -translate-y-1/2 flex-col gap-3 z-40 hidden md:flex items-end">
-        {/* Up Button */}
-        <button
-          onClick={() => scrollToProject(activeProjectIndex - 1)}
-          disabled={activeProjectIndex === 0}
-          className="p-2 rounded-full text-zinc-400 hover:text-zinc-900 transition-all disabled:opacity-20 disabled:cursor-not-allowed hover:bg-zinc-100/50"
-        >
-          <ChevronUp size={20} />
-        </button>
+      {/* --- Floating Navigation & Actions Wrapper --- */}
+      <div className="absolute inset-0 pointer-events-none flex items-center justify-center z-40">
+        <div className="w-full max-w-3xl relative h-full flex items-center">
+          {/* Left: Navigation */}
+          <div className="absolute left-0 -translate-x-full -ml-2 lg:-ml-6 flex flex-col gap-3 pointer-events-auto hidden xl:flex items-end">
+            <button
+              onClick={() => scrollToProject(activeProjectIndex - 1)}
+              disabled={activeProjectIndex === 0}
+              className="p-2 rounded-full text-zinc-400 hover:text-zinc-900 transition-all disabled:opacity-20 disabled:cursor-not-allowed hover:bg-zinc-100/50"
+            >
+              <ChevronUp size={20} />
+            </button>
 
-        {/* All Projects Button */}
-        <button
-          onClick={() => setShowAllProjects(true)}
-          className="p-2 rounded-xl text-zinc-600 hover:text-zinc-900 hover:scale-105 transition-all group hover:bg-zinc-100/50"
-        >
-          <Grid
-            size={20}
-            className="group-hover:rotate-12 transition-transform duration-300"
-          />
-        </button>
+            <button
+              onClick={() => setShowAllProjects(true)}
+              className="p-2 rounded-xl text-zinc-600 hover:text-zinc-900 hover:scale-105 transition-all group hover:bg-zinc-100/50"
+            >
+              <Grid
+                size={20}
+                className="transition-transform duration-300"
+              />
+            </button>
 
-        {/* Down Button */}
-        <button
-          onClick={() => scrollToProject(activeProjectIndex + 1)}
-          disabled={activeProjectIndex === projectsData.length - 1}
-          className="p-2 rounded-full text-zinc-400 hover:text-zinc-900 transition-all disabled:opacity-20 disabled:cursor-not-allowed hover:bg-zinc-100/50"
-        >
-          <ChevronDown size={20} />
-        </button>
+            <button
+              onClick={() => scrollToProject(activeProjectIndex + 1)}
+              disabled={activeProjectIndex === projectsData.length - 1}
+              className="p-2 rounded-full text-zinc-400 hover:text-zinc-900 transition-all disabled:opacity-20 disabled:cursor-not-allowed hover:bg-zinc-100/50"
+            >
+              <ChevronDown size={20} />
+            </button>
+          </div>
+
+          {/* Right: Actions (Floating) */}
+          <div className="absolute right-4 lg:right-auto lg:left-full lg:ml-6 flex flex-col gap-3 pointer-events-auto items-start">
+             {/* Details Button */}
+             <button
+              onClick={() => setSelectedProject(projectsData[activeProjectIndex])}
+              className="p-3 rounded-full bg-white shadow-surround-md text-zinc-400 hover:text-zinc-900 transition-all hover:scale-105"
+              title="Details"
+            >
+              <Info size={20} />
+            </button>
+
+            {/* Preview Button */}
+            <a
+              href={projectsData[activeProjectIndex]?.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-3 rounded-full bg-white shadow-surround-md text-zinc-400 hover:text-zinc-900 transition-all hover:scale-105"
+              title="Preview"
+            >
+              <ExternalLink size={20} />
+            </a>
+          </div>
+        </div>
       </div>
 
       {/* Mobile Floating Action Button for All Projects (Bottom Right or Left) */}
