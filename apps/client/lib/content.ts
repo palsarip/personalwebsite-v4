@@ -424,6 +424,17 @@ export const projectsData: Project[] = [
     category: "Web3",
   },
   {
+    title: "Sound Wave2",
+    description: "A decentralized music streaming protocol and artist royalty platform.",
+    tags: ["Web3", "Solidity", "Next.js", "IPFS"],
+    link: "#",
+    imageUrl:
+      "https://images.unsplash.com/photo-1511379938547-c1f69419868d?q=80&w=2070&auto=format&fit=crop",
+    videoUrl:
+      "https://storage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4",
+    category: "Web3",
+  },
+  {
     title: "Travel Diaries",
     description: "Interactive travelogue featuring map-based storytelling and itinerary planning.",
     tags: ["React", "Mapbox", "Firebase", "Redux"],

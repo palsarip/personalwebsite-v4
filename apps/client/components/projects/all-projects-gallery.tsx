@@ -10,7 +10,7 @@ import { ExpandedProjectCard } from "./expanded-project-card";
 interface GalleryProjectItemProps {
   project: Project;
   onClick: () => void;
-  layoutId: string;
+  layoutId?: string;
 }
 
 function GalleryProjectItem({ project, onClick, layoutId }: GalleryProjectItemProps) {
@@ -35,9 +35,10 @@ function GalleryProjectItem({ project, onClick, layoutId }: GalleryProjectItemPr
     <motion.div
       layoutId={layoutId}
       layout
+
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.9 }}
+      exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.15 } }}
       transition={{ type: "spring", duration: 0.6, bounce: 0.3 }}
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.95 }}
@@ -232,16 +233,14 @@ export function AllProjectsGallery({
       {/* --- Gallery Grid --- */}
       <div className="flex-1 overflow-y-auto p-6 md:p-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 gap-y-12 max-w-[1920px] mx-auto">
-          <AnimatePresence mode="popLayout">
             {filteredProjects.map((project, index) => (
               <GalleryProjectItem
                 key={project.title}
                 project={project}
                 onClick={() => setSelectedProject(project)}
-                layoutId={`project-${project.title}`}
+                layoutId={`${activeCategory}-${project.title}`}
               />
             ))}
-          </AnimatePresence>
         </div>
 
         {/* Footer padding */}
@@ -255,7 +254,7 @@ export function AllProjectsGallery({
             project={selectedProject}
             onClose={() => setSelectedProject(null)}
             mode="modal" // Using Classic Modal mode
-            layoutId={`project-${selectedProject.title}`}
+            layoutId={`${activeCategory}-${selectedProject.title}`}
           />
         )}
       </AnimatePresence>
